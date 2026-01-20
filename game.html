@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bengt | The Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1B4538 0%, #0a1f17 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        canvas {
+            border: 3px solid #90EE90;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(144, 238, 144, 0.3);
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .controls p {
+            margin: 5px 0;
+            opacity: 0.8;
+        }
+        .score-display {
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+        .high-score {
+            opacity: 0.7;
+            font-size: 1rem;
+        }
+        a {
+            color: #90EE90;
+            text-decoration: none;
+            margin-top: 20px;
+            display: block;
+        }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>🤖 Flappy Bengt</h1>
+    <p class="subtitle">Help Bengt avoid the CAPTCHAs!</p>
+    
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    
+    <div class="controls">
+        <p>Press <strong>SPACE</strong> or <strong>CLICK</strong> to flap</p>
+        <p>Avoid the red CAPTCHAs - Bengt can't solve them!</p>
+        <div class="score-display">Score: <span id="score">0</span></div>
+        <div class="high-score">High Score: <span id="highScore">0</span></div>
+    </div>
+    
+    <a href="index.html">← Back to main page</a>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Game state
+        let gameRunning = false;
+        let gameOver = false;
+        let score = 0;
+        let highScore = localStorage.getItem('flappyBengtHighScore') || 0;
+        document.getElementById('highScore').textContent = highScore;
+        
+        // Bengt (the player)
+        const bengt = {
+            x: 80,
+            y: 300,
+            width: 50,
+            height: 50,
+            velocity: 0,
+            gravity: 0.5,
+            jump: -10,
+            rotation: 0
+        };
+        
+        // Obstacles (CAPTCHAs)
+        let obstacles = [];
+        const obstacleWidth = 60;
+        const gap = 180;
+        const obstacleSpeed = 3;
+        
+        // Initialize first obstacle
+        function spawnObstacle() {
+            const minHeight = 50;
+            const maxHeight = canvas.height - gap - 50;
+            const topHeight = Math.random() * (maxHeight - minHeight) + minHeight;
+            
+            obstacles.push({
+                x: canvas.width,
+                topHeight: topHeight,
+                bottomY: topHeight + gap,
+                passed: false
+            });
+        }
+        
+        // Draw Bengt (robot emoji style)
+        function drawBengt() {
+            ctx.save();
+            ctx.translate(bengt.x + bengt.width/2, bengt.y + bengt.height/2);
+            ctx.rotate(bengt.rotation);
+            
+            // Body
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(-bengt.width/2, -bengt.height/2, bengt.width, bengt.height);
+            
+            // Face
+            ctx.fillStyle = '#ecf0f1';
+            ctx.fillRect(-bengt.width/2 + 5, -bengt.height/2 + 5, bengt.width - 10, bengt.height - 20);
+            
+            // Eyes
+            ctx.fillStyle = '#2ecc71';
+            ctx.fillRect(-bengt.width/2 + 10, -bengt.height/2 + 10, 12, 12);
+            ctx.fillRect(bengt.width/2 - 22, -bengt.height/2 + 10, 12, 12);
+            
+            // Mouth (smile if going up, worried if going down)
+            ctx.fillStyle = '#333';
+            if (bengt.velocity < 0) {
+                ctx.fillRect(-10, bengt.height/2 - 18, 20, 5);
+            } else {
+                ctx.beginPath();
+                ctx.arc(0, bengt.height/2 - 15, 8, 0, Math.PI);
+                ctx.fill();
+            }
+            
+            // Antenna
+            ctx.fillStyle = '#e74c3c';
+            ctx.beginPath();
+            ctx.arc(0, -bengt.height/2 - 5, 5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+        
+        // Draw obstacles (CAPTCHAs)
+        function drawObstacles() {
+            obstacles.forEach(obs => {
+                // Top obstacle
+                ctx.fillStyle = '#c0392b';
+                ctx.fillRect(obs.x, 0, obstacleWidth, obs.topHeight);
+                
+                // Bottom obstacle
+                ctx.fillRect(obs.x, obs.bottomY, obstacleWidth, canvas.height - obs.bottomY);
+                
+                // CAPTCHA text
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 10px Arial';
+                ctx.save();
+                ctx.translate(obs.x + obstacleWidth/2, obs.topHeight/2);
+                ctx.fillText('CAPTCHA', -25, 0);
+                ctx.restore();
+                
+                ctx.save();
+                ctx.translate(obs.x + obstacleWidth/2, obs.bottomY + (canvas.height - obs.bottomY)/2);
+                ctx.fillText('CAPTCHA', -25, 0);
+                ctx.restore();
+            });
+        }
+        
+        // Draw background
+        function drawBackground() {
+            // Gradient already set by CSS, draw some clouds
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.beginPath();
+            ctx.arc(100, 100, 30, 0, Math.PI * 2);
+            ctx.arc(130, 100, 25, 0, Math.PI * 2);
+            ctx.arc(160, 100, 30, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(300, 200, 25, 0, Math.PI * 2);
+            ctx.arc(325, 200, 20, 0, Math.PI * 2);
+            ctx.arc(350, 200, 25, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // Draw start screen
+        function drawStartScreen() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 40px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🤖 Flappy Bengt', canvas.width/2, 200);
+            
+            ctx.font = '20px Arial';
+            ctx.fillText('Press SPACE or CLICK to start', canvas.width/2, 300);
+            
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#90EE90';
+            ctx.fillText('Avoid the CAPTCHAs!', canvas.width/2, 350);
+            
+            ctx.textAlign = 'left';
+        }
+        
+        // Draw game over screen
+        function drawGameOver() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#e74c3c';
+            ctx.font = 'bold 40px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER', canvas.width/2, 200);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = '30px Arial';
+            ctx.fillText('Score: ' + score, canvas.width/2, 280);
+            
+            if (score === parseInt(highScore)) {
+                ctx.fillStyle = '#f1c40f';
+                ctx.font = '24px Arial';
+                ctx.fillText('🏆 New High Score! 🏆', canvas.width/2, 330);
+            }
+            
+            ctx.fillStyle = '#90EE90';
+            ctx.font = '20px Arial';
+            ctx.fillText('Press SPACE to restart', canvas.width/2, 400);
+            
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#aaa';
+            ctx.fillText('Bengt hit a CAPTCHA :(', canvas.width/2, 450);
+            
+            ctx.textAlign = 'left';
+        }
+        
+        // Update game state
+        function update() {
+            if (!gameRunning || gameOver) return;
+            
+            // Update Bengt
+            bengt.velocity += bengt.gravity;
+            bengt.y += bengt.velocity;
+            bengt.rotation = Math.min(Math.max(bengt.velocity * 0.05, -0.5), 0.5);
+            
+            // Check bounds
+            if (bengt.y < 0) {
+                bengt.y = 0;
+                bengt.velocity = 0;
+            }
+            if (bengt.y + bengt.height > canvas.height) {
+                endGame();
+                return;
+            }
+            
+            // Update obstacles
+            obstacles.forEach(obs => {
+                obs.x -= obstacleSpeed;
+                
+                // Check collision
+                if (bengt.x + bengt.width > obs.x && bengt.x < obs.x + obstacleWidth) {
+                    if (bengt.y < obs.topHeight || bengt.y + bengt.height > obs.bottomY) {
+                        endGame();
+                        return;
+                    }
+                }
+                
+                // Score point
+                if (!obs.passed && obs.x + obstacleWidth < bengt.x) {
+                    obs.passed = true;
+                    score++;
+                    document.getElementById('score').textContent = score;
+                }
+            });
+            
+            // Remove off-screen obstacles
+            obstacles = obstacles.filter(obs => obs.x + obstacleWidth > 0);
+            
+            // Spawn new obstacles
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - 250) {
+                spawnObstacle();
+            }
+        }
+        
+        // Render
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Background
+            ctx.fillStyle = '#1B4538';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
+            
+            if (!gameRunning && !gameOver) {
+                drawBengt();
+                drawStartScreen();
+            } else if (gameOver) {
+                drawObstacles();
+                drawBengt();
+                drawGameOver();
+            } else {
+                drawObstacles();
+                drawBengt();
+                
+                // Score in game
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 30px Arial';
+                ctx.fillText(score, 20, 50);
+            }
+        }
+        
+        // Game loop
+        function gameLoop() {
+            update();
+            render();
+            requestAnimationFrame(gameLoop);
+        }
+        
+        // Start/restart game
+        function startGame() {
+            gameRunning = true;
+            gameOver = false;
+            score = 0;
+            document.getElementById('score').textContent = '0';
+            bengt.y = 300;
+            bengt.velocity = 0;
+            bengt.rotation = 0;
+            obstacles = [];
+            spawnObstacle();
+        }
+        
+        // End game
+        function endGame() {
+            gameOver = true;
+            gameRunning = false;
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('flappyBengtHighScore', highScore);
+                document.getElementById('highScore').textContent = highScore;
+            }
+        }
+        
+        // Flap
+        function flap() {
+            if (!gameRunning && !gameOver) {
+                startGame();
+            } else if (gameOver) {
+                startGame();
+            } else {
+                bengt.velocity = bengt.jump;
+            }
+        }
+        
+        // Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                flap();
+            }
+        });
+        
+        canvas.addEventListener('click', flap);
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            flap();
+        });
+        
+        // Start game loop
+        gameLoop();
+    </script>
+</body>
+</html>
