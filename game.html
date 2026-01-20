@@ -80,28 +80,30 @@
         let highScore = localStorage.getItem('flappyBengtHighScore') || 0;
         document.getElementById('highScore').textContent = highScore;
         
-        // Bengt (the player)
+        // Bengt (the player) - EASIER SETTINGS
         const bengt = {
             x: 80,
             y: 300,
-            width: 50,
-            height: 50,
+            width: 45,
+            height: 45,
             velocity: 0,
-            gravity: 0.5,
-            jump: -10,
+            gravity: 0.35,      // Reduced from 0.5
+            jump: -8,           // Reduced from -10 (less dramatic)
             rotation: 0
         };
         
-        // Obstacles (CAPTCHAs)
+        // Obstacles (CAPTCHAs) - EASIER SETTINGS
         let obstacles = [];
-        const obstacleWidth = 60;
-        const gap = 180;
-        const obstacleSpeed = 3;
+        const obstacleWidth = 50;   // Slightly narrower
+        let gap = 220;              // Much bigger gap (was 180)
+        let obstacleSpeed = 2;      // Slower (was 3)
+        const minGap = 160;         // Will decrease to this eventually
+        const maxSpeed = 4;         // Will increase to this eventually
         
         // Initialize first obstacle
         function spawnObstacle() {
-            const minHeight = 50;
-            const maxHeight = canvas.height - gap - 50;
+            const minHeight = 80;
+            const maxHeight = canvas.height - gap - 80;
             const topHeight = Math.random() * (maxHeight - minHeight) + minHeight;
             
             obstacles.push({
@@ -124,27 +126,27 @@
             
             // Face
             ctx.fillStyle = '#ecf0f1';
-            ctx.fillRect(-bengt.width/2 + 5, -bengt.height/2 + 5, bengt.width - 10, bengt.height - 20);
+            ctx.fillRect(-bengt.width/2 + 5, -bengt.height/2 + 5, bengt.width - 10, bengt.height - 18);
             
             // Eyes
             ctx.fillStyle = '#2ecc71';
-            ctx.fillRect(-bengt.width/2 + 10, -bengt.height/2 + 10, 12, 12);
-            ctx.fillRect(bengt.width/2 - 22, -bengt.height/2 + 10, 12, 12);
+            ctx.fillRect(-bengt.width/2 + 8, -bengt.height/2 + 8, 10, 10);
+            ctx.fillRect(bengt.width/2 - 18, -bengt.height/2 + 8, 10, 10);
             
             // Mouth (smile if going up, worried if going down)
             ctx.fillStyle = '#333';
             if (bengt.velocity < 0) {
-                ctx.fillRect(-10, bengt.height/2 - 18, 20, 5);
+                ctx.fillRect(-8, bengt.height/2 - 16, 16, 4);
             } else {
                 ctx.beginPath();
-                ctx.arc(0, bengt.height/2 - 15, 8, 0, Math.PI);
+                ctx.arc(0, bengt.height/2 - 13, 6, 0, Math.PI);
                 ctx.fill();
             }
             
             // Antenna
             ctx.fillStyle = '#e74c3c';
             ctx.beginPath();
-            ctx.arc(0, -bengt.height/2 - 5, 5, 0, Math.PI * 2);
+            ctx.arc(0, -bengt.height/2 - 4, 4, 0, Math.PI * 2);
             ctx.fill();
             
             ctx.restore();
@@ -162,15 +164,15 @@
                 
                 // CAPTCHA text
                 ctx.fillStyle = 'white';
-                ctx.font = 'bold 10px Arial';
+                ctx.font = 'bold 9px Arial';
                 ctx.save();
                 ctx.translate(obs.x + obstacleWidth/2, obs.topHeight/2);
-                ctx.fillText('CAPTCHA', -25, 0);
+                ctx.fillText('CAPTCHA', -22, 0);
                 ctx.restore();
                 
                 ctx.save();
                 ctx.translate(obs.x + obstacleWidth/2, obs.bottomY + (canvas.height - obs.bottomY)/2);
-                ctx.fillText('CAPTCHA', -25, 0);
+                ctx.fillText('CAPTCHA', -22, 0);
                 ctx.restore();
             });
         }
@@ -208,6 +210,7 @@
             ctx.font = '16px Arial';
             ctx.fillStyle = '#90EE90';
             ctx.fillText('Avoid the CAPTCHAs!', canvas.width/2, 350);
+            ctx.fillText('Gets harder as you progress...', canvas.width/2, 380);
             
             ctx.textAlign = 'left';
         }
@@ -226,7 +229,7 @@
             ctx.font = '30px Arial';
             ctx.fillText('Score: ' + score, canvas.width/2, 280);
             
-            if (score === parseInt(highScore)) {
+            if (score === parseInt(highScore) && score > 0) {
                 ctx.fillStyle = '#f1c40f';
                 ctx.font = '24px Arial';
                 ctx.fillText('🏆 New High Score! 🏆', canvas.width/2, 330);
@@ -243,6 +246,18 @@
             ctx.textAlign = 'left';
         }
         
+        // Update difficulty based on score
+        function updateDifficulty() {
+            // Gradually increase difficulty every 3 points
+            const difficultyLevel = Math.floor(score / 3);
+            
+            // Decrease gap (but not below minimum)
+            gap = Math.max(minGap, 220 - difficultyLevel * 10);
+            
+            // Increase speed (but not above maximum)  
+            obstacleSpeed = Math.min(maxSpeed, 2 + difficultyLevel * 0.3);
+        }
+        
         // Update game state
         function update() {
             if (!gameRunning || gameOver) return;
@@ -250,7 +265,7 @@
             // Update Bengt
             bengt.velocity += bengt.gravity;
             bengt.y += bengt.velocity;
-            bengt.rotation = Math.min(Math.max(bengt.velocity * 0.05, -0.5), 0.5);
+            bengt.rotation = Math.min(Math.max(bengt.velocity * 0.04, -0.4), 0.4);
             
             // Check bounds
             if (bengt.y < 0) {
@@ -266,9 +281,12 @@
             obstacles.forEach(obs => {
                 obs.x -= obstacleSpeed;
                 
-                // Check collision
-                if (bengt.x + bengt.width > obs.x && bengt.x < obs.x + obstacleWidth) {
-                    if (bengt.y < obs.topHeight || bengt.y + bengt.height > obs.bottomY) {
+                // Check collision (with smaller hitbox for fairness)
+                const hitboxShrink = 5;
+                if (bengt.x + bengt.width - hitboxShrink > obs.x && 
+                    bengt.x + hitboxShrink < obs.x + obstacleWidth) {
+                    if (bengt.y + hitboxShrink < obs.topHeight || 
+                        bengt.y + bengt.height - hitboxShrink > obs.bottomY) {
                         endGame();
                         return;
                     }
@@ -279,14 +297,16 @@
                     obs.passed = true;
                     score++;
                     document.getElementById('score').textContent = score;
+                    updateDifficulty();
                 }
             });
             
             // Remove off-screen obstacles
             obstacles = obstacles.filter(obs => obs.x + obstacleWidth > 0);
             
-            // Spawn new obstacles
-            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - 250) {
+            // Spawn new obstacles (more spacing at start)
+            const spacing = score < 3 ? 300 : 250;
+            if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < canvas.width - spacing) {
                 spawnObstacle();
             }
         }
@@ -315,6 +335,11 @@
                 ctx.fillStyle = 'white';
                 ctx.font = 'bold 30px Arial';
                 ctx.fillText(score, 20, 50);
+                
+                // Difficulty indicator
+                ctx.font = '12px Arial';
+                ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                ctx.fillText('Speed: ' + obstacleSpeed.toFixed(1) + 'x', 20, 70);
             }
         }
         
@@ -330,6 +355,8 @@
             gameRunning = true;
             gameOver = false;
             score = 0;
+            gap = 220;          // Reset to easy
+            obstacleSpeed = 2;  // Reset to easy
             document.getElementById('score').textContent = '0';
             bengt.y = 300;
             bengt.velocity = 0;
