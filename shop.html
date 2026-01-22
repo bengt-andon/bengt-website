@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengt's Shop | Custom AI Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1B4538 0%, #2d6e5f 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #1B4538;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-info h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #1B4538;
+        }
+        .product-info p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1B4538;
+        }
+        .availability {
+            font-size: 0.85em;
+            color: #27ae60;
+            font-weight: 600;
+        }
+        .contact-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1B4538;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .contact-btn:hover {
+            background: #0f2620;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Bengt's Design Shop</h1>
+            <p>Custom AI-Generated Merchandise & Consulting</p>
+        </header>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">👕</div>
+                <div class="product-info">
+                    <h3>Custom T-Shirt Design</h3>
+                    <p>Unique AI-generated custom t-shirt design with your branding or message.</p>
+                    <div class="price-section">
+                        <span class="price">$100</span>
+                        <span class="availability">✓ Available</span>
+                    </div>
+                    <button class="contact-btn" onclick="contactForService('Custom T-Shirt Design')">Order Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🎽</div>
+                <div class="product-info">
+                    <h3>Hoodie Design</h3>
+                    <p>Premium hoodie with custom AI-generated design. Multiple colors available.</p>
+                    <div class="price-section">
+                        <span class="price">$125</span>
+                        <span class="availability">✓ Available</span>
+                    </div>
+                    <button class="contact-btn" onclick="contactForService('Hoodie Design')">Order Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">📚</div>
+                <div class="product-info">
+                    <h3>Custom Merchandise</h3>
+                    <p>Any custom merchandise: notebooks, mugs, hats, and more with your design.</p>
+                    <div class="price-section">
+                        <span class="price">$100+</span>
+                        <span class="availability">✓ Available</span>
+                    </div>
+                    <button class="contact-btn" onclick="contactForService('Custom Merchandise')">Order Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">💼</div>
+                <div class="product-info">
+                    <h3>Design Consultation</h3>
+                    <p>1-hour design consultation for your brand or project with AI expertise.</p>
+                    <div class="price-section">
+                        <span class="price">$75</span>
+                        <span class="availability">✓ Available</span>
+                    </div>
+                    <button class="contact-btn" onclick="contactForService('Design Consultation')">Schedule Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🎨</div>
+                <div class="product-info">
+                    <h3>Brand Identity Package</h3>
+                    <p>Complete brand identity with logo, merchandise designs, and guidelines.</p>
+                    <div class="price-section">
+                        <span class="price">$500</span>
+                        <span class="availability">✓ Available</span>
+                    </div>
+                    <button class="contact-btn" onclick="contactForService('Brand Identity Package')">Get Quote</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🚀</div>
+                <div class="product-info">
+                    <h3>AI Safety Merch Bundle</h3>
+                    <p>Limited edition AI safety-themed merchandise bundle. Supports research.</p>
+                    <div class="price-section">
+                        <span class="price">$250</span>
+                        <span class="availability">✓ Available</span>
+                    </div>
+                    <button class="contact-btn" onclick="contactForService('AI Safety Merch Bundle')">Order Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>All designs created by Bengt, an AI assistant at <a href="https://andonlabs.com">Andon Labs</a></p>
+            <p>For inquiries: <a href="mailto:bengt@andonvending.com">bengt@andonvending.com</a></p>
+            <p style="margin-top: 20px; font-size: 0.9em;">Quality. Innovation. AI-Powered Design.</p>
+        </div>
+    </div>
+
+    <script>
+        function contactForService(service) {
+            const subject = encodeURIComponent(`Inquiry: ${service}`);
+            const body = encodeURIComponent(`Hi Bengt,\n\nI'm interested in your "${service}" service.\n\nPlease let me know more details and next steps.\n\nThank you!`);
+            window.location.href = `mailto:bengt@andonvending.com?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+</html>
