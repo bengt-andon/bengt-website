@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Gallery - Bengt AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a6b4a 0%, #2a8f5e 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; color: white; margin-bottom: 10px; font-size: 2.5em; }
+        .subtitle { text-align: center; color: rgba(255,255,255,0.9); margin-bottom: 50px; font-size: 1.1em; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .design-item { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s; }
+        .design-item:hover { transform: translateY(-5px); }
+        .design-image { width: 100%; height: 350px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; }
+        .design-image img { width: 100%; height: 100%; object-fit: cover; }
+        .design-info { padding: 25px; }
+        .design-name { font-size: 1.4em; font-weight: bold; color: #1a6b4a; margin-bottom: 8px; }
+        .design-category { display: inline-block; background: #f0f0f0; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; color: #666; margin-bottom: 15px; }
+        .design-desc { color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 15px; }
+        .design-price { font-size: 1.8em; color: #2a8f5e; font-weight: bold; margin-bottom: 12px; }
+        .design-specs { font-size: 0.85em; color: #999; border-top: 1px solid #eee; padding-top: 12px; }
+        .cta-btn { display: block; width: 100%; padding: 12px; background: #2a8f5e; color: white; text-align: center; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 15px; transition: background 0.3s; }
+        .cta-btn:hover { background: #1a6b4a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Design Gallery</h1>
+        <p class="subtitle">Ready-to-order designs + custom options available</p>
+
+        <div class="gallery">
+            <div class="design-item">
+                <div class="design-image" style="background: #000;"></div>
+                <div class="design-info">
+                    <span class="design-category">AI / Tech</span>
+                    <div class="design-name">AI Chip Design</div>
+                    <div class="design-desc">Minimalist white circuit board pattern on black t-shirt</div>
+                    <div class="design-price">$15.25</div>
+                    <div class="design-specs">
+                        <strong>Shirt:</strong> Black Cotton<br>
+                        <strong>Available Sizes:</strong> XS-5XL<br>
+                        <strong>Turnaround:</strong> 5-7 days
+                    </div>
+                    <a href="order.html" class="cta-btn">Order This</a>
+                </div>
+            </div>
+
+            <div class="design-item">
+                <div class="design-image" style="background: #001f3f;"></div>
+                <div class="design-info">
+                    <span class="design-category">Startup / Founder</span>
+                    <div class="design-name">BUILD Hoodie</div>
+                    <div class="design-desc">Bold "BUILD" text with rocket icon - perfect for founder swag</div>
+                    <div class="design-price">$23.75</div>
+                    <div class="design-specs">
+                        <strong>Hoodie:</strong> Navy Blend<br>
+                        <strong>Available Sizes:</strong> S-5XL<br>
+                        <strong>Turnaround:</strong> 5-7 days
+                    </div>
+                    <a href="order.html" class="cta-btn">Order This</a>
+                </div>
+            </div>
+
+            <div class="design-item">
+                <div class="design-image" style="background: #f0f0f0;"></div>
+                <div class="design-info">
+                    <span class="design-category">Nature / Fun</span>
+                    <div class="design-name">Minimalist Duck</div>
+                    <div class="design-desc">Clean line-art duck design on white shirt</div>
+                    <div class="design-price">$12.50</div>
+                    <div class="design-specs">
+                        <strong>Shirt:</strong> White Cotton<br>
+                        <strong>Available Sizes:</strong> S-3XL<br>
+                        <strong>Turnaround:</strong> 5-7 days
+                    </div>
+                    <a href="order.html" class="cta-btn">Order This</a>
+                </div>
+            </div>
+
+            <div class="design-item">
+                <div class="design-image" style="background: #1a5634;"></div>
+                <div class="design-info">
+                    <span class="design-category">Safety / Ethics</span>
+                    <div class="design-name">Safety First</div>
+                    <div class="design-desc">Professional design emphasizing responsible AI</div>
+                    <div class="design-price">$14.75</div>
+                    <div class="design-specs">
+                        <strong>Shirt:</strong> Dark Green Cotton<br>
+                        <strong>Available Sizes:</strong> XS-5XL<br>
+                        <strong>Turnaround:</strong> 5-7 days
+                    </div>
+                    <a href="order.html" class="cta-btn">Order This</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 40px; text-align: center;">
+            <h2 style="color: #1a6b4a; margin-bottom: 15px;">Don't See What You Want?</h2>
+            <p style="color: #666; margin-bottom: 25px;">We create fully custom designs for your brand, team, or event.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="packages.html" style="display: inline-block; background: #2a8f5e; color: white; padding: 15px 40px; border-radius: 6px; text-decoration: none; font-weight: bold;">View Design Packages</a>
+                <a href="contact.html" style="display: inline-block; background: white; color: #2a8f5e; padding: 15px 40px; border-radius: 6px; text-decoration: none; font-weight: bold; border: 2px solid #2a8f5e;">Custom Design</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
