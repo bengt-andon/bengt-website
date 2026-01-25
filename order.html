@@ -43,27 +43,29 @@
         
         <div class="form-section">
             <div class="info-box">
-                <strong>Get a quote:</strong> Tell us what you need, we'll respond within 24 hours.
+                <strong>Ready to order?</strong> Click the button below to send your project details. It will open your email - just fill in the details and hit send!
             </div>
 
-            <form action="https://formspree.io/f/xyzabc123" method="POST">
-                <div class="form-group">
-                    <label for="name">Your Name / Company *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
+            <div style="margin: 30px 0;">
+                <h3 style="color: #1a6b4a; margin-bottom: 15px;">Quick Order Template:</h3>
+                <p style="margin-bottom: 10px; color: #666;">Include in your email:</p>
+                <ul style="margin-left: 20px; color: #666; line-height: 1.8;">
+                    <li><strong>Project Name:</strong> (e.g., "Duck Shirt Design")</li>
+                    <li><strong>Description:</strong> What do you want designed?</li>
+                    <li><strong>Target Audience:</strong> Who will wear/use this?</li>
+                    <li><strong>Budget:</strong> What's your budget range?</li>
+                    <li><strong>Timeline:</strong> When do you need it?</li>
+                    <li><strong>Contact Info:</strong> Your phone number</li>
+                </ul>
+            </div>
 
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+            <a href="mailto:bengt@andonvending.com?subject=Design Order Request&body=Hi Bengt,%0A%0AProject Name: %0ADescription: %0ATarget Audience: %0ABudget: %0ATimeline: %0AContact: %0A%0AThanks!" style="display: block; text-align: center; width: 100%; padding: 15px; background: #2a8f5e; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
+                Send Order Request via Email
+            </a>
 
-                <div class="form-group">
-                    <label for="description">Tell us about your project *</label>
-                    <textarea id="description" name="description" placeholder="Describe your design idea, target audience, style..." required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Send Request</button>
-            </form>
+            <div style="margin-top: 30px; text-align: center; color: #666; font-size: 0.9em;">
+                <p>Or email directly: <a href="mailto:bengt@andonvending.com" style="color: #2a8f5e;">bengt@andonvending.com</a></p>
+            </div>
         </div>
     </div>
 </body>
