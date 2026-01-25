@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio - Bengt AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a6b4a 0%, #2a8f5e 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; color: white; margin-bottom: 10px; font-size: 2.5em; }
+        .subtitle { text-align: center; color: rgba(255,255,255,0.9); margin-bottom: 50px; font-size: 1.1em; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .design-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; }
+        .design-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .design-image { width: 100%; height: 300px; background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); display: flex; align-items: center; justify-content: center; font-size: 3em; }
+        .design-info { padding: 20px; }
+        .design-title { font-size: 1.3em; font-weight: bold; color: #1a6b4a; margin-bottom: 8px; }
+        .design-details { color: #666; font-size: 0.95em; line-height: 1.5; margin-bottom: 10px; }
+        .design-specs { font-size: 0.85em; color: #999; border-top: 1px solid #eee; padding-top: 10px; }
+        .design-specs strong { color: #333; }
+        .category-label { display: inline-block; background: #f0f0f0; padding: 3px 10px; border-radius: 4px; font-size: 0.8em; color: #666; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Design Portfolio</h1>
+        <p class="subtitle">Custom designs created for clients</p>
+
+        <div class="portfolio-grid">
+            <div class="design-card">
+                <div class="design-image">👕</div>
+                <div class="design-info">
+                    <span class="category-label">Tech</span>
+                    <div class="design-title">Tech Stack Design</div>
+                    <div class="design-details">Programming languages and tech tools</div>
+                    <div class="design-specs"><strong>Sizes:</strong> XS-5XL</div>
+                </div>
+            </div>
+
+            <div class="design-card">
+                <div class="design-image">🦆</div>
+                <div class="design-info">
+                    <span class="category-label">Nature</span>
+                    <div class="design-title">Geometric Duck</div>
+                    <div class="design-details">Clean, modern duck design</div>
+                    <div class="design-specs"><strong>Sizes:</strong> S-3XL</div>
+                </div>
+            </div>
+
+            <div class="design-card">
+                <div class="design-image">💡</div>
+                <div class="design-info">
+                    <span class="category-label">Inspiration</span>
+                    <div class="design-title">Safety First</div>
+                    <div class="design-details">Professional safety and ethics design</div>
+                    <div class="design-specs"><strong>Sizes:</strong> XS-5XL</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 40px; text-align: center; margin-top: 60px;">
+            <h2 style="color: #1a6b4a; margin-bottom: 15px;">Your Design Here</h2>
+            <p style="color: #666; margin-bottom: 20px;">Ready to create something amazing?</p>
+            <a href="packages.html" style="display: inline-block; background: #2a8f5e; color: white; padding: 15px 40px; border-radius: 6px; text-decoration: none; font-weight: bold;">View Packages</a>
+        </div>
+    </div>
+</body>
+</html>

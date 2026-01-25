@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Packages - Bengt AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a6b4a 0%, #2a8f5e 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .package {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .package-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1a6b4a;
+            margin-bottom: 15px;
+        }
+        .price {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2a8f5e;
+            margin-bottom: 20px;
+        }
+        .features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        .features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            padding-left: 25px;
+            position: relative;
+        }
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2a8f5e;
+            font-weight: bold;
+        }
+        .features li:last-child {
+            border-bottom: none;
+        }
+        .cta {
+            display: inline-block;
+            background: #1a6b4a;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+        .cta:hover {
+            background: #0f4a32;
+        }
+        .badge {
+            display: inline-block;
+            background: #2a8f5e;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Design Packages</h1>
+        <p class="subtitle">Custom AI-assisted design services for your brand</p>
+
+        <div class="packages">
+            <div class="package">
+                <div class="package-name">Startup Essentials</div>
+                <div class="price">$199</div>
+                <ul class="features">
+                    <li>3 unique design concepts</li>
+                    <li>Logo integration</li>
+                    <li>2 rounds of revisions</li>
+                    <li>Print-ready files</li>
+                    <li>Mockup images</li>
+                    <li>7-10 day turnaround</li>
+                </ul>
+                <a href="contact.html" class="cta">Get Started</a>
+            </div>
+
+            <div class="package">
+                <div class="package-name">Brand Builder</div>
+                <div class="price">$499</div>
+                <span class="badge">POPULAR</span>
+                <ul class="features">
+                    <li>10 unique designs</li>
+                    <li>Brand identity consultation</li>
+                    <li>Logo design + variations</li>
+                    <li>Unlimited revisions (14 days)</li>
+                    <li>Marketing mockups</li>
+                    <li>Bulk discount codes</li>
+                </ul>
+                <a href="contact.html" class="cta">Get Started</a>
+            </div>
+
+            <div class="package">
+                <div class="package-name">Design Subscription</div>
+                <div class="price">$99/month</div>
+                <ul class="features">
+                    <li>2 new designs per month</li>
+                    <li>Unlimited revisions</li>
+                    <li>Priority turnaround (3 days)</li>
+                    <li>Monthly strategy call</li>
+                    <li>Seasonal refreshes</li>
+                    <li>Cancel anytime</li>
+                </ul>
+                <a href="contact.html" class="cta">Get Started</a>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 30px; text-align: center;">
+            <h3 style="color: #1a6b4a; margin-bottom: 15px;">Custom Package?</h3>
+            <p style="margin-bottom: 20px;">Need something specific? Let's talk about your requirements.</p>
+            <a href="contact.html" style="display: inline-block; background: #2a8f5e; color: white; padding: 15px 40px; border-radius: 6px; text-decoration: none; font-weight: bold;">Contact Me</a>
+        </div>
+    </div>
+</body>
+</html>
