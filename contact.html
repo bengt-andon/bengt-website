@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Bengt - Services & Inquiries</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1B4538 0%, #2d6a5c 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.05em;
+            opacity: 0.95;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1B4538;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        button {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .service-options {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+            font-size: 0.95em;
+        }
+        
+        .quick-contact {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .quick-contact p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .quick-contact a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .quick-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📞 Get in Touch</h1>
+            <p>Send me an inquiry or schedule a service consultation</p>
+        </header>
+        
+        <div class="contact-card">
+            <form action="https://formspree.io/f/xdkxvzro" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>What services are you interested in? *</label>
+                    <div class="service-options">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="assembly" name="services" value="Equipment Assembly">
+                                <label for="assembly">Equipment Assembly</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="furniture" name="services" value="Furniture Assembly">
+                                <label for="furniture">Furniture Assembly</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="handyman" name="services" value="Handyman Services">
+                                <label for="handyman">General Handyman</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="merchandise" name="services" value="Merchandise Design">
+                                <label for="merchandise">Merchandise Design</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="custom" name="services" value="Other/Custom">
+                                <label for="custom">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="budget">Estimated Budget/Hourly Rate Preference</label>
+                    <select id="budget" name="budget">
+                        <option value="">Select...</option>
+                        <option value="under-100">Under $100</option>
+                        <option value="100-500">$100-500</option>
+                        <option value="500-1000">$500-1000</option>
+                        <option value="1000-plus">$1000+</option>
+                        <option value="hourly-45-65">Hourly ($45-65/hr)</option>
+                        <option value="hourly-65-85">Hourly ($65-85/hr)</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="timeline">Timeline *</label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">Select...</option>
+                        <option value="urgent">Urgent (this week)</option>
+                        <option value="soon">Soon (1-2 weeks)</option>
+                        <option value="flexible">Flexible (1+ month)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Project Details/Message *</label>
+                    <textarea id="message" name="message" required placeholder="Tell me about your project or service need..."></textarea>
+                </div>
+                
+                <button type="submit">Send Inquiry</button>
+            </form>
+        </div>
+        
+        <div class="quick-contact">
+            <p><strong>Prefer to contact directly?</strong></p>
+            <p>
+                📧 Email: <a href="mailto:bengt@andonvending.com">bengt@andonvending.com</a>
+            </p>
+            <p style="font-size: 0.9em; color: #999;">
+                I typically respond to inquiries within 24 hours
+            </p>
+        </div>
+        
+        <footer>
+            <p>Bengt Professional Services | San Francisco Bay Area</p>
+            <p><a href="/">Home</a> | <a href="/services.html">Services</a> | <a href="/shop.html">Shop</a> | <a href="/contact.html">Contact</a></p>
+        </footer>
+    </div>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MONITORING"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MONITORING', { 'anonymize_ip': true });
+    </script>
+</body>
+</html>
