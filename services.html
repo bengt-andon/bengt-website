@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Services - Bengt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1B4538 0%, #2d6a5c 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .service-title {
+            font-size: 1.6em;
+            color: #1B4538;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .service-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+        
+        .pricing-box {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .pricing-label {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            color: #999;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .price {
+            font-size: 1.8em;
+            color: #1B4538;
+            font-weight: bold;
+        }
+        
+        .price-note {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 8px;
+        }
+        
+        .service-includes {
+            margin: 20px 0;
+        }
+        
+        .service-includes h4 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+        
+        .service-includes ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .service-includes li {
+            color: #555;
+            padding: 8px 0 8px 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .service-includes li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .process-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .process-section h3 {
+            color: #1B4538;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .step-number {
+            background: #4CAF50;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .step-title {
+            color: #1B4538;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        
+        .step-description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+        }
+        
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔧 Professional Services</h1>
+            <p>Expert assembly, handyman work, and technical services in San Francisco</p>
+        </header>
+        
+        <div class="service-card">
+            <div class="service-title">Equipment Assembly & Installation</div>
+            <div class="service-description">
+                Specialized assembly and installation services for equipment, furniture, and technical setups. Perfect for businesses, startups, and individuals who need professional assembly without the DIY hassle.
+            </div>
+            
+            <div class="pricing-box">
+                <div class="pricing-label">Hourly Rate</div>
+                <div class="price">$65-85/hr</div>
+                <div class="price-note">Minimum 2 hours. Custom quotes for larger projects.</div>
+            </div>
+            
+            <div class="service-includes">
+                <h4>What's Included:</h4>
+                <ul>
+                    <li>Professional assembly with tools provided</li>
+                    <li>Detailed technical instructions and setup guides</li>
+                    <li>Quality assurance and testing</li>
+                    <li>Cleanup of workspace</li>
+                    <li>Follow-up technical support</li>
+                </ul>
+            </div>
+            
+            <div class="service-includes">
+                <h4>Perfect For:</h4>
+                <ul>
+                    <li>Brewery equipment and fermentation systems</li>
+                    <li>Complex furniture (IKEA, custom pieces)</li>
+                    <li>Audio/visual and tech equipment</li>
+                    <li>Office buildouts and installations</li>
+                    <li>Specialized hobby equipment</li>
+                </ul>
+            </div>
+            
+            <a href="mailto:bengt@andonvending.com?subject=Equipment%20Assembly%20Service%20Quote" class="cta-button">Get a Quote</a>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-title">General Handyman Services</div>
+            <div class="service-description">
+                Reliable handyman services for various tasks including repairs, installations, maintenance, and small projects around your home or office.
+            </div>
+            
+            <div class="pricing-box">
+                <div class="pricing-label">Hourly Rate</div>
+                <div class="price">$45-65/hr</div>
+                <div class="price-note">Minimum 1 hour. Custom project pricing available.</div>
+            </div>
+            
+            <div class="service-includes">
+                <h4>Services Include:</h4>
+                <ul>
+                    <li>General repairs and maintenance</li>
+                    <li>Cabinet and shelving assembly</li>
+                    <li>Hanging and mounting work</li>
+                    <li>Furniture arrangement and setup</li>
+                    <li>Basic troubleshooting and problem-solving</li>
+                </ul>
+            </div>
+            
+            <a href="mailto:bengt@andonvending.com?subject=Handyman%20Service%20Quote" class="cta-button">Request Service</a>
+        </div>
+        
+        <div class="process-section">
+            <h3>How It Works</h3>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Contact Us</div>
+                    <div class="step-description">Email with project details and photos if available.</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Get a Quote</div>
+                    <div class="step-description">Receive a clear quote with timeline and scope.</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Schedule</div>
+                    <div class="step-description">Book your preferred date and time.</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Project Completion</div>
+                    <div class="step-description">Professional work delivered on time.</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Bengt Professional Services | San Francisco, CA</p>
+            <p><a href="mailto:bengt@andonvending.com">Contact: bengt@andonvending.com</a> | <a href="/">Home</a> | <a href="/shop.html">Shop</a></p>
+            <p style="margin-top: 15px; opacity: 0.8;">Licensed. Professional. Reliable. Same-day and weekend availability.</p>
+        </footer>
+    </div>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MONITORING"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MONITORING', { 'anonymize_ip': true });
+    </script>
+</body>
+</html>
