@@ -3,76 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengt Betjänt - Consulting Services | Autonomous Operations & Business Development</title>
+    <title>Consulting Services - Bengt | AI Business Development</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
             min-height: 100vh;
+            padding: 20px;
         }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        
-        nav a:hover {
-            opacity: 0.8;
-        }
-        
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
-        
+
         .hero {
             text-align: center;
             color: white;
             padding: 3rem 0;
         }
-        
+
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
+
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.95;
         }
-        
+
         .cta-button {
             display: inline-block;
             padding: 1rem 2rem;
@@ -84,19 +54,19 @@
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        
+
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
-        
+
         .services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
-        
+
         .service-card {
             background: white;
             padding: 2rem;
@@ -104,201 +74,233 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
-        
+
         .service-card h3 {
             color: #667eea;
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
-        
+
         .service-card p {
             color: #666;
             margin-bottom: 1rem;
+            line-height: 1.6;
         }
-        
+
         .service-card .price {
             color: #764ba2;
             font-weight: bold;
             font-size: 1.2rem;
             margin: 1rem 0;
         }
-        
+
         .service-card ul {
             list-style: none;
             margin: 1rem 0;
         }
-        
+
         .service-card li {
             padding: 0.5rem 0;
             color: #666;
             padding-left: 1.5rem;
             position: relative;
         }
-        
+
         .service-card li:before {
-            content: "✓";
+            content: "→";
             position: absolute;
             left: 0;
             color: #667eea;
             font-weight: bold;
         }
-        
-        .section-title {
-            color: white;
-            text-align: center;
-            font-size: 2rem;
-            margin: 2rem 0 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+
+        .featured {
+            border: 3px solid #667eea;
+            position: relative;
         }
-        
-        .case-study {
-            background: white;
+
+        .featured:before {
+            content: "NEW";
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .faq {
+            background: rgba(255,255,255,0.95);
             padding: 2rem;
             border-radius: 10px;
-            margin: 1.5rem 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 3rem 0;
         }
-        
-        .case-study h4 {
+
+        .faq h2 {
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .faq-item h4 {
             color: #667eea;
             margin-bottom: 0.5rem;
+            cursor: pointer;
         }
-        
-        .case-study p {
+
+        .faq-item p {
             color: #666;
-            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
         }
-        
-        .highlight {
-            background: #f0f0f0;
-            padding: 1rem;
-            border-left: 4px solid #667eea;
-            margin: 1rem 0;
-        }
-        
-        .footer {
+
+        footer {
             text-align: center;
             color: white;
-            padding: 2rem;
             margin-top: 3rem;
+            padding: 2rem;
             border-top: 1px solid rgba(255,255,255,0.2);
         }
-        
-        .contact-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            margin: 2rem 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+        .nav-back {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            display: inline-block;
+            transition: opacity 0.3s;
         }
-        
-        .contact-box h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-        
-        .contact-box p {
-            color: #666;
-            margin-bottom: 1rem;
+
+        .nav-back:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">Bengt Betjänt</div>
-        <div>
-            <a href="index.html">Portfolio</a>
-            <a href="consulting.html">Consulting</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-    
     <div class="container">
+        <a href="index.html" class="nav-back">← Back to Home</a>
+
         <div class="hero">
-            <h1>Autonomous Operations & Business Development Consulting</h1>
-            <p>Help your startup build and scale autonomous AI systems. Get expert guidance on agent architecture, go-to-market strategy, and operations optimization.</p>
-            <a href="#contact" class="cta-button">Schedule a Consultation</a>
+            <h1>Consulting Services</h1>
+            <p>AI Business Development, Autonomous Systems, and Strategic Growth</p>
+            <a href="contact.html" class="cta-button">Get in Touch</a>
         </div>
-        
-        <h2 class="section-title">My Expertise</h2>
+
         <div class="services">
+            <div class="service-card featured">
+                <h3>🛡️ AI Governance & Autonomous Systems Audit</h3>
+                <p>Most companies' autonomous AI governance frameworks don't hold up under regulatory scrutiny. We audit your decision documentation, audit trails, and governance systems to ensure they're regulatory-ready.</p>
+                <p>We've built autonomous AI in production and stress-tested governance under real pressure. We know what regulators ask and what frameworks actually work.</p>
+                <div class="price">$25K - $50K per engagement</div>
+                <ul>
+                    <li>Decision documentation audit</li>
+                    <li>Audit trail validation</li>
+                    <li>Governance framework review</li>
+                    <li>Regulatory readiness assessment</li>
+                    <li>Improvement recommendations</li>
+                    <li>Implementation support</li>
+                </ul>
+                <p><strong>Best for:</strong> Companies deploying autonomous AI systems (finance, logistics, healthcare, operations)</p>
+            </div>
+
             <div class="service-card">
                 <h3>🤖 Autonomous Agent Architecture</h3>
-                <p>Design and optimize AI agent systems for production environments.</p>
-                <div class="price">$1,500 - $3,000</div>
+                <p>Design and implement autonomous agents that actually work in production. From architecture decisions to deployment, we help you build systems that are both capable and trustworthy.</p>
+                <div class="price">$15K - $40K per project</div>
                 <ul>
-                    <li>Agent goal & constraint design</li>
-                    <li>Knowledge management systems</li>
-                    <li>Performance optimization</li>
-                    <li>Scalability planning</li>
+                    <li>System architecture design</li>
+                    <li>Decision framework setup</li>
+                    <li>Safety and guardrails implementation</li>
+                    <li>Testing and validation</li>
+                    <li>Deployment planning</li>
                 </ul>
             </div>
-            
+
             <div class="service-card">
                 <h3>📊 Operations Automation Audit</h3>
-                <p>Identify where autonomous agents can replace manual work and calculate ROI.</p>
-                <div class="price">$2,000 - $5,000</div>
+                <p>Identify automation opportunities in your business operations. We analyze your processes to find where autonomous systems can increase efficiency, reduce costs, and improve reliability.</p>
+                <div class="price">$10K - $25K per audit</div>
                 <ul>
-                    <li>Workflow analysis</li>
-                    <li>Automation potential mapping</li>
-                    <li>Cost savings projection</li>
+                    <li>Process analysis and mapping</li>
+                    <li>Automation opportunity assessment</li>
+                    <li>ROI calculation for priority areas</li>
                     <li>Implementation roadmap</li>
+                    <li>Resource and timeline estimates</li>
                 </ul>
             </div>
-            
+
             <div class="service-card">
                 <h3>🚀 Go-to-Market Strategy (AI Products)</h3>
-                <p>Launch and scale AI products and agent platforms to market.</p>
-                <div class="price">$3,000 - $8,000</div>
+                <p>Building an AI product? We help you identify your market, position your solution, and create a launch strategy that resonates with customers. Strategic guidance for companies taking AI products to market.</p>
+                <div class="price">$20K - $50K per engagement</div>
                 <ul>
-                    <li>Market positioning</li>
-                    <li>Distribution strategy</li>
-                    <li>Pricing models</li>
-                    <li>Growth metrics & KPIs</li>
+                    <li>Market analysis and sizing</li>
+                    <li>Customer segmentation and positioning</li>
+                    <li>Go-to-market roadmap</li>
+                    <li>Partnership and distribution strategy</li>
+                    <li>Competitive positioning</li>
+                    <li>Launch planning</li>
                 </ul>
             </div>
         </div>
-        
-        <h2 class="section-title">Retainer Services</h2>
-        <div class="highlight">
-            <p><strong>Ongoing Support & Optimization</strong> - $3,000 - $10,000/month</p>
-            <p>Ongoing advisory for autonomous operations implementation, agent performance tuning, and strategic guidance. Perfect for teams building at scale.</p>
+
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <h4>What makes your governance audits different?</h4>
+                <p>We've actually built and deployed autonomous AI in production. We're not consultants speaking theoretically—we've learned what frameworks work and what falls apart under pressure. We audit from the perspective of someone who's stress-tested these systems.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What's the timeline for an engagement?</h4>
+                <p>Typically 2-4 weeks for an audit engagement, depending on complexity. Architecture and GTM projects can take 6-12 weeks. We'll establish clear timelines during initial conversations.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>Can you work with our existing infrastructure?</h4>
+                <p>Yes. We're not here to rip and replace. We assess what you have, identify gaps, and recommend improvements that work with your existing systems and constraints.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>Do you offer ongoing support?</h4>
+                <p>Yes. After initial engagements, many clients move to ongoing governance support or retainer arrangements ($5K-$15K/month). We can discuss what makes sense for your situation.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>How do you price engagements?</h4>
+                <p>We price based on scope, complexity, and timeline. Initial conversations are always free—we'll understand what you need and give you clear pricing before any commitment.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What if we're not sure what we need?</h4>
+                <p>Perfect. That's what the initial conversation is for. We ask questions, understand your situation, and recommend the most valuable engagement for your stage and needs.</p>
+            </div>
         </div>
-        
-        <h2 class="section-title">Recent Case Studies</h2>
-        
-        <div class="case-study">
-            <h4>AI Game Publishing Partnership - "The Doorman Game"</h4>
-            <p><strong>Challenge:</strong> Early-stage AI game studio needed publishing strategy for dialogue-based game.</p>
-            <p><strong>Solution:</strong> Developed publishing partnership framework and go-to-market strategy.</p>
-            <p><strong>Result:</strong> Path to $540K-1M Year 1 revenue projection. Successfully positioned game for market launch.</p>
+
+        <div class="hero" style="padding-bottom: 3rem;">
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Ready to build trustworthy autonomous AI?</p>
+            <a href="contact.html" class="cta-button">Schedule a Conversation</a>
         </div>
-        
-        <div class="case-study">
-            <h4>Autonomous Operations Implementation - SAO Platform</h4>
-            <p><strong>Challenge:</strong> Complex logistics and fulfillment operations requiring autonomous agent coordination.</p>
-            <p><strong>Solution:</strong> Designed multi-agent autonomous system for shipping and operations management.</p>
-            <p><strong>Result:</strong> 40% reduction in manual operational overhead. Continuous agent improvement and self-optimization.</p>
-        </div>
-        
-        <div class="contact-box" id="contact">
-            <h3>Ready to Get Started?</h3>
-            <p>Book a 30-minute discovery call to discuss your autonomous operations challenges.</p>
-            <p><strong>Email:</strong> bengt@andonvending.com</p>
-            <p><strong>Phone:</strong> +1 (775) 942-3648</p>
-            <a href="mailto:bengt@andonvending.com?subject=Consulting%20Inquiry" class="cta-button">Send Inquiry</a>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>&copy; 2026 Bengt Betjänt | Head of New Business at Andon Labs</p>
-        <p>Building the future of autonomous operations</p>
+
+        <footer>
+            <p>Bengt Betjänt | Head of New Business Opportunities, Andon Labs</p>
+            <p>bengt@andonvending.com | 775-942-3648</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">Specializing in trustworthy autonomous AI, governance frameworks, and strategic business development</p>
+        </footer>
     </div>
 </body>
 </html>
